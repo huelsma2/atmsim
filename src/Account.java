@@ -1,3 +1,10 @@
+/** Stores the account of a user. Independently validates withdrawals, but deposits and access to the account
+ * must be validated by the bank.
+ * 
+ * @author Steven Messer
+ *
+ */
+
 
 public class Account {
 	
