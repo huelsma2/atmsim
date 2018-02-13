@@ -30,7 +30,7 @@ public class Account {
 		_balance = 0;
 	}
 	
-	/** asdf
+	/** a
 	 * 
 	 * @return
 	 */
