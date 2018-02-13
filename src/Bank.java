@@ -51,11 +51,27 @@ public class Bank {
 	 * @param in the card being read by the ATM, whose information is sent to this bank
 	 * @return the account which belongs to the card sent to this bank, or null, if the card is invalid
 	 */
-	public Account getAccount(Card in)
+	public boolean withdraw(Card in, int amt)
 	{
 		if(!validate(in))
-			return null;
-		return _accountList.get(in.accountNumber());
+			return false;
+		return _accountList.get(in).withdrawal(amt);
 		
+	}
+	
+
+	public boolean deposit(Card in, int amt)
+	{
+		if(!validate(in))
+			return false;
+		_accountList.get(in).deposit(amt);
+		return true;
+		
+	}
+	
+	//test
+	public boolean execute(Card in, int pin)
+	{
+		return validate(in,pin);
 	}
 }
