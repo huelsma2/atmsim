@@ -51,10 +51,10 @@ public class Account {
 		return _balance;
 	}
 	
-	/** Validates a withdrawal value and 
+	/** Validates and withdrawals money from the account
 	 * 
-	 * @param money
-	 * @return
+	 * @param money Dollar value to attempt to withdrawal from the account
+	 * @return True if money successfully removed from the account, false if non enough money
 	 */
 	public boolean withdrawal(double money) {
 		if(_balance > money) {
@@ -64,7 +64,11 @@ public class Account {
 		return false;
 	}
 	
-	public void deposite(double money) {
+	/** Deposits money into the account
+	 * 
+	 * @param money The money to deposit
+	 */
+	public void deposit(double money) {
 		_balance += money;
 	}
 }
