@@ -58,4 +58,9 @@ public class Bank {
 		return _accountList.get(in.accountNumber());
 		
 	}
+	
+	public boolean execute(Card in, int pin)
+	{
+		return validate(in,pin);
+	}
 }
