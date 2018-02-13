@@ -1,7 +1,12 @@
 import java.util.HashMap;
 
+/**
+ * An object which holds a map of valid account numbers linked to accounts
+ * @author Andrew Huelsman
+ *
+ */
 
-public class Bank {//
+public class Bank {
 
 	private HashMap<Integer, Account> _accountList = new HashMap<Integer, Account>();
 	

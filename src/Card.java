@@ -1,4 +1,8 @@
-
+/**
+ * Object which holds the account number for a specific account
+ * @author Andrew Huelsman
+ *
+ */
 public class Card {
 
 	private int _accountNumber;
