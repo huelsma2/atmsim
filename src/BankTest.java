@@ -13,11 +13,13 @@ import org.junit.internal.runners.JUnit38ClassRunner;
 
 
 public class BankTest{
-	Card testCard1 = new Card(0);
+	Account Account1 = new Account(1234, 6789, 80);
+	Account Account2 = new Account(6789, 4321, 60);
+	
 	
 	@Test
 	public void TestWithdraw() {
-		//assertTrue(testCard1));
+		assertEquals(1234, Account1.getAccountNumber());
 	
 	}
 }
