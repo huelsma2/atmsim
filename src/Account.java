@@ -30,23 +30,33 @@ public class Account {
 		_balance = 0;
 	}
 	
-	/** a
-	 * 
-	 * @return
+	/** 
+	 * @return The account number of the account as an integer
 	 */
 	public int getAccountNumber(){
 		return _accountNumber;
 	}
 	
+	/**
+	 * @return The pin code of the account for bank validation as an integer
+	 */
 	public int getPinCode(){
 		return _pinCode;
 	}
 	
+	/**
+	 * @return The balance of the account as a double
+	 */
 	public double getBalance() {
 		return _balance;
 	}
 	
-	public boolean withdrawl(double money) {
+	/** Validates a withdrawal value and 
+	 * 
+	 * @param money
+	 * @return
+	 */
+	public boolean withdrawal(double money) {
 		if(_balance > money) {
 			_balance -= money;
 			return true;
