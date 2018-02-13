@@ -40,4 +40,17 @@ public class Bank {
 			return true;
 		return false;
 	}
+	
+	/**
+	 * Returns the account belonging to the card sent to this bank
+	 * @param in the card being read by the ATM, whose information is sent to this bank
+	 * @return the account which belongs to the card sent to this bank, or null, if the card is invalid
+	 */
+	public Account getAccount(Card in)
+	{
+		if(!validate(in))
+			return null;
+		return _accountList.get(in.accountNumber());
+		
+	}
 }
