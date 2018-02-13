@@ -6,6 +6,9 @@ import java.util.HashMap;
 import org.junit.Test;
 import org.junit.internal.runners.JUnit38ClassRunner;
 
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+
 
 /** BankTest Test Cases 
  * 
@@ -19,6 +22,8 @@ public class BankTest{
 	HashMap<Integer, Account> accountList = new HashMap<Integer, Account>();
 	static Bank _bank;
 	
+	Card card1 = new Card(1234);
+	Card card2 = new Card(6789);
 	
 	
 	@Test
@@ -31,15 +36,14 @@ public class BankTest{
 	}
 	
 	public void TestValidAccountNumber() {
-		assertEquals(bank ;
-		//assertEquals(6789, Account2.getAccountNumber());
-	
+		assertEquals(_bank.getAccount(card1), 1234);
+		assertEquals(_bank.getAccount(card2), 6789);
+		
 	}
 	
 	@Test
 	public void TestInvalidAccountNumber() {
-		//assertEquals(1234, Account1.getAccountNumber());
-		//assertEquals(6789, Account2.getAccountNumber());
+		assertThat(_bank.getAccount(card1), not(6789));
 	
 	}
 }
