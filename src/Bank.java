@@ -20,6 +20,13 @@ public class Bank {
 	}
 	
 	/**
+	 * @return The balance of the account as a double
+	 */
+	public double getBalance(Card in) {
+		return _accountList.get(in).getBalance();
+	}
+	
+	/**
 	 * Validates whether or not the card sent in belongs to a valid Account in this bank
 	 * @param in the card being read by the ATM, whose information is sent to this bank
 	 * @return whether or not the card's account number is valid

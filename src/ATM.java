@@ -6,7 +6,7 @@ public class ATM {
 		private Card testCard;
 		private int PIN;
 		private Scanner input = new Scanner(System.in);
-		private int amount;
+		private int amount = 0;
 		
 		
 		public ATM(Bank newBank){
@@ -27,9 +27,10 @@ public class ATM {
 				}
 				
 				if(testBank.withdraw(card1, amount)){
-					System.out.println("Transaction successful. Previous balance: ");
+					System.out.println("Transaction successful. \nPrevious balance: $" + (testBank.getBalance(card1) + amount) + "\nWithdrawn: $" + amount + "Current Balance: $" + testBank.getBalance(card1));
 				}else{
-					System.out.println("Transaction unsuccessful. Previous balance: ");
+					amount = 0;
+					System.out.println("Transaction unsuccessful. \nPrevious balance: $" + (testBank.getBalance(card1) + amount) + "\nWithdrawn: $" + amount + "Current Balance: $" + testBank.getBalance(card1));
 				}
 			}
 			
@@ -42,9 +43,10 @@ public class ATM {
 				}
 				
 				if(testBank.deposit(card1, amount)){
-					System.out.println("Transaction successful. Previous balance: ");
+					System.out.println("Transaction successful. \nPrevious balance: $" + (testBank.getBalance(card1) - amount) + "\nDeposited: $" + amount + "Current Balance: $" + testBank.getBalance(card1));
 				}else{
-					System.out.println("Transaction unsuccessful. Previous balance: ");
+					amount = 0;
+					System.out.println("Transaction unsuccessful. \nPrevious balance: $" + (testBank.getBalance(card1) - amount) + "\nDeposited: $" + amount + "Current Balance: $" + testBank.getBalance(card1));
 				}
 			}
 			
