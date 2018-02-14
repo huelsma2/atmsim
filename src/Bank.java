@@ -4,6 +4,7 @@ import java.util.HashMap;
  * An object which holds a map of valid account numbers linked to accounts
  * @author Andrew Huelsman
  *
+ *
  */
 
 public class Bank {
@@ -34,7 +35,7 @@ public class Bank {
 	/**
 	 * Validates whether or not the pin sent to this bank matches the card sent to this bank
 	 * @param in the card being read by the ATM, whose information is sent to this bank
-	 * @param pin the inputted string to be validated against the card's account
+	 * @param pin the inputed string to be validated against the card's account
 	 * @return whether or not the pin sent in matches the account's actual pin
 	 */
 	public boolean validate(Card in, int pin)
