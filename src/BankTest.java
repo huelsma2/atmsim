@@ -21,9 +21,11 @@ public class BankTest{
 	
 	HashMap<Integer, Account> accountList = new HashMap<Integer, Account>();
 	static Bank _bank;
+	static Account _account;
 	
 	Card card1 = new Card(1234);
 	Card card2 = new Card(6789);
+	Card card3 = new Card(1111); //Bad account Value 
 	
 	
 	@Test
@@ -37,16 +39,19 @@ public class BankTest{
 	
 	@Test
 	public void TestValidAccountNumber() {
-		assertTrue(_bank.validate(card1, 6789));
-		assertTrue(_bank.validate(card2, 4321));
+		assertTrue(_bank.validate(card1));
+		assertTrue(_bank.validate(card2));
+		System.out.println(accountList.containsKey(card1.accountNumber()));
+		System.out.println(accountList.get(card2.accountNumber()));
+
 		
 	}
 	
 	@Test
 	public void TestInvalidAccountNumber() {
-		assertFalse(_bank.validate(card1, 4321));
-		assertFalse(_bank.validate(card2, 6789));
-		assertFalse(_bank.validate(card1, 1111));
+	
+		//System.out.println(card3.accountNumber());
+		assertFalse(_bank.validate(card3));
 		
 	
 	}
