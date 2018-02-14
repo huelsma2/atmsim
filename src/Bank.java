@@ -34,8 +34,11 @@ public class Bank {
 	 */
 	public boolean validate(Card in)
 	{
-		if(!_accountList.containsKey(in.accountNumber()))
-			return false;
+		try{
+			if(!_accountList.containsKey(in.accountNumber()))
+	
+				return false;
+		}catch (NullPointerException e) { System.out.println("Fuck"); return false; }
 		return true;
 	}
 	
