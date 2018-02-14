@@ -18,8 +18,7 @@ public class ATM {
 		public void execute(Card card1, char transaction){
 			
 			
-			
-			if(transaction == 'W'){
+			if(transaction == 'W' || transaction == 'w'){
 				System.out.println("Enter withdrawal amount: ");
 				try{
 					amount = input.nextInt();
@@ -29,14 +28,14 @@ public class ATM {
 				testBank.withdraw(card1, amount);
 			}
 			
-			if(transaction == 'D'){
+			if(transaction == 'D' || transaction == 'd'){
 				System.out.printf("Enter deposit amount: ");
 				try{
 					amount = input.nextInt();
 				}catch(NumberFormatException e){
 					System.out.println("Invalid amount");
 				}
-				testBank.deposit(card1, amount);
+				//testBank.deposit(card1, amount);
 			}
 			
 			
@@ -45,6 +44,7 @@ public class ATM {
 		public void start(int accountNum){
 				
 			testCard = new Card(accountNum);
+			
 			if(!testBank.validate(testCard)){
 				return;
 			}
@@ -58,11 +58,11 @@ public class ATM {
 				return;
 			}
 			
-			System.out.println("Would you like to Withdrawal(W) or Deposit(D):  ");
+			if(testBank.validate(testCard, PIN)){
+				
+			System.out.println("Would you like to Withdrawal(W) or Deposit(D)?:  ");
 			char transaction = input.next().charAt(0);
 			execute(testCard, transaction);
-			
 		}
-
-
+	}
 }
