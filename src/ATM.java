@@ -9,9 +9,9 @@ public class ATM {
 		private int amount;
 		
 		
-		public ATM(Bank inputBank){
+		public ATM(Bank newBank){
 			
-			this.testBank = inputBank;
+			this.testBank = newBank;
 			
 		}
 		
