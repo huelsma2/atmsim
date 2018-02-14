@@ -1,3 +1,9 @@
+/**
+ * ATM class simulates the ATM that a customer/actor will interact with.
+ * ATM takes the input account number, validates, transacts, and prints receipt.
+ * @author Andrew Yehle
+ */
+
 import java.util.Scanner;
 
 public class ATM {
@@ -8,13 +14,22 @@ public class ATM {
 		private Scanner input = new Scanner(System.in);
 		private int amount = 0;
 		
-		
+		/**
+		 * Creates an ATM object that takes an input of a Bank object.
+		 * @param newBank Input of a Bank object for the constructor.
+		 */
 		public ATM(Bank newBank){
 			
 			this.testBank = newBank;
 			
 		}
 		
+		/**
+		 * Execute method takes an input of a card and a 'W' or 'D' character
+		 * from the start() method to create a withdrawl or deposit transaction.
+		 * @param card1
+		 * @param transaction
+		 */
 		public void execute(Card card1, char transaction){
 			
 			
@@ -53,6 +68,10 @@ public class ATM {
 			
 		}
 		
+		/**Start method takes an input of account number and initiates the ATM
+		 * process of waiting for account number input.
+		 * @param accountNum
+		 */
 		public void start(int accountNum){
 				
 			testCard = new Card(accountNum);
