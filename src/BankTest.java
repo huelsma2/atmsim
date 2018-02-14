@@ -41,7 +41,6 @@ public class BankTest{
 	public void TestValidAccountNumber() {
 		assertTrue(_bank.validate(card1));
 		assertTrue(_bank.validate(card2));
-		System.out.println(accountList.containsKey(card1.accountNumber()));
 		System.out.println(accountList.get(card2.accountNumber()));
 
 		
