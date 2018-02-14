@@ -35,7 +35,7 @@ public class ATM {
 				}catch(NumberFormatException e){
 					System.out.println("Invalid amount");
 				}
-				//testBank.deposit(card1, amount);
+				testBank.deposit(card1, amount);
 			}
 			
 			

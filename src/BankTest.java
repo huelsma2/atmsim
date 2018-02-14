@@ -35,15 +35,18 @@ public class BankTest{
 	
 	}
 	
+	@Test
 	public void TestValidAccountNumber() {
-		assertEquals(_bank.getAccount(card1), 1234);
-		assertEquals(_bank.getAccount(card2), 6789);
+		assertTrue(_bank.validate(card1, 6789));
+		assertTrue(_bank.validate(card2, 4321));
 		
 	}
 	
 	@Test
 	public void TestInvalidAccountNumber() {
-		assertThat(_bank.getAccount(card1), not(6789));
+		assertFalse(_bank.validate(card1, 4321));
+		assertFalse(_bank.validate(card2, 6789));
+		assertFalse(_bank.validate(card1, 1111));
 		
 	
 	}
