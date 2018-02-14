@@ -25,7 +25,12 @@ public class ATM {
 				}catch(NumberFormatException e){
 					System.out.println("Invalid amount");
 				}
-				testBank.withdraw(card1, amount);
+				
+				if(testBank.withdraw(card1, amount)){
+					System.out.println("Transaction successful. Previous balance: ");
+				}else{
+					System.out.println("Transaction unsuccessful. Previous balance: ");
+				}
 			}
 			
 			if(transaction == 'D' || transaction == 'd'){
@@ -35,7 +40,12 @@ public class ATM {
 				}catch(NumberFormatException e){
 					System.out.println("Invalid amount");
 				}
-				testBank.deposit(card1, amount);
+				
+				if(testBank.deposit(card1, amount)){
+					System.out.println("Transaction successful. Previous balance: ");
+				}else{
+					System.out.println("Transaction unsuccessful. Previous balance: ");
+				}
 			}
 			
 			
@@ -50,7 +60,6 @@ public class ATM {
 			}
 			
 			System.out.println("Please enter PIN code: ");
-			
 			try{
 				PIN = input.nextInt();
 			}catch(NumberFormatException e){
@@ -63,6 +72,8 @@ public class ATM {
 			System.out.println("Would you like to Withdrawal(W) or Deposit(D)?:  ");
 			char transaction = input.next().charAt(0);
 			execute(testCard, transaction);
+		}else{
+			return;
 		}
 	}
 }
