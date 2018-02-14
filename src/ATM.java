@@ -27,7 +27,7 @@ public class ATM {
 				}catch(NumberFormatException e){
 					System.out.println("Invalid amount");
 				}
-				testBank.getAccount(card1).withdrawal(amount);
+				//testBank.getAccount(card1).withdrawal(amount);
 			}
 			
 			if(transaction == 'D'){
@@ -37,7 +37,7 @@ public class ATM {
 				}catch(NumberFormatException e){
 					System.out.println("Invalid amount");
 				}
-				testBank.getAccount(card1).deposit(amount);
+				//testBank.getAccount(card1).deposit(amount);
 			}
 			
 			
