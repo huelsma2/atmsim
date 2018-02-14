@@ -35,7 +35,7 @@ public class ATM {
 			}
 			
 			if(transaction == 'D' || transaction == 'd'){
-				System.out.printf("Enter deposit amount: ");
+				System.out.println("Enter deposit amount: ");
 				try{
 					amount = input.nextInt();
 				}catch(NumberFormatException e){
@@ -43,10 +43,10 @@ public class ATM {
 				}
 				
 				if(testBank.deposit(card1, amount)){
-					System.out.println("Transaction successful. \nPrevious balance: $" + (testBank.getBalance(card1) - amount) + "\nDeposited: $" + amount + "Current Balance: $" + testBank.getBalance(card1));
+					System.out.println("Transaction successful. \nPrevious balance: $" + (testBank.getBalance(card1) - amount) + "\nDeposited: $" + amount + "\nCurrent Balance: $" + testBank.getBalance(card1));
 				}else{
 					amount = 0;
-					System.out.println("Transaction unsuccessful. \nPrevious balance: $" + (testBank.getBalance(card1) - amount) + "\nDeposited: $" + amount + "Current Balance: $" + testBank.getBalance(card1));
+					System.out.println("Transaction unsuccessful. \nPrevious balance: $" + (testBank.getBalance(card1) - amount) + "\nDeposited: $" + amount + "\nCurrent Balance: $" + testBank.getBalance(card1));
 				}
 			}
 			
