@@ -24,7 +24,7 @@ public class Bank {
 	 * @return The balance of the account as a double
 	 */
 	public double getBalance(Card in) {
-		return _accountList.get(in).getBalance();
+		return _accountList.get(in.accountNumber()).getBalance();
 	}
 	
 	/**
@@ -52,7 +52,7 @@ public class Bank {
 	{
 		if(!validate(in))
 			return false;
-		if(_accountList.get(in).getPinCode()==pin)
+		if(_accountList.get(in.accountNumber()).getPinCode()==pin)
 			return true;
 		return false;
 	}
@@ -66,7 +66,7 @@ public class Bank {
 	{
 		if(!validate(in))
 			return false;
-		return _accountList.get(in).withdrawal(amt);
+		return _accountList.get(in.accountNumber()).withdrawal(amt);
 		
 	}
 	
@@ -75,7 +75,7 @@ public class Bank {
 	{
 		if(!validate(in))
 			return false;
-		_accountList.get(in).deposit(amt);
+		_accountList.get(in.accountNumber()).deposit(amt);
 		return true;
 		
 	}

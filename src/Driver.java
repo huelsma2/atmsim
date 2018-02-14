@@ -16,15 +16,17 @@ public class Driver {
 		accountList.put(1234, new Account(1234, 6789, 80));
 		accountList.put(6789, new Account(6789, 4321, 60));
 		_bank = new Bank(accountList);
+		System.out.println("SIMULATION: USER ENTERS CARD (ENTER ACCOUNT NUMBER):");
 		Scanner stdin = new Scanner(System.in);
 		while(true)
 		{
 			int accnum = -1;
 			try{accnum= stdin.nextInt();} catch (NumberFormatException e) { System.out.println("Invalid format"); }
 			new ATM(_bank).start(accnum);
-			System.out.println("Transaction finished. Continue? (y for yes, anything else for no");
+			System.out.println("Transaction finished. Continue? (y for yes, anything else for no)");
 			if(!stdin.next().equals("y"))
 				break;
 		}
+		stdin.close();
 	}
 }
