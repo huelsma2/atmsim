@@ -6,12 +6,12 @@ public class ATM {
 		private Card testCard;
 		private int PIN;
 		private Scanner input = new Scanner(System.in);
-		private int amount;
+		private int amount = 0;
 		
 		
-		public ATM(Bank inputBank){
+		public ATM(Bank newBank){
 			
-			this.testBank = inputBank;
+			this.testBank = newBank;
 			
 		}
 		
@@ -25,17 +25,29 @@ public class ATM {
 				}catch(NumberFormatException e){
 					System.out.println("Invalid amount");
 				}
-				testBank.withdraw(card1, amount);
+				
+				if(testBank.withdraw(card1, amount)){
+					System.out.println("Transaction successful. \nPrevious balance: $" + (testBank.getBalance(card1) + amount) + "\nWithdrawn: $" + amount + "Current Balance: $" + testBank.getBalance(card1));
+				}else{
+					amount = 0;
+					System.out.println("Transaction unsuccessful. \nPrevious balance: $" + (testBank.getBalance(card1) + amount) + "\nWithdrawn: $" + amount + "Current Balance: $" + testBank.getBalance(card1));
+				}
 			}
 			
 			if(transaction == 'D' || transaction == 'd'){
-				System.out.printf("Enter deposit amount: ");
+				System.out.println("Enter deposit amount: ");
 				try{
 					amount = input.nextInt();
 				}catch(NumberFormatException e){
 					System.out.println("Invalid amount");
 				}
-				testBank.deposit(card1, amount);
+				
+				if(testBank.deposit(card1, amount)){
+					System.out.println("Transaction successful. \nPrevious balance: $" + (testBank.getBalance(card1) - amount) + "\nDeposited: $" + amount + "\nCurrent Balance: $" + testBank.getBalance(card1));
+				}else{
+					amount = 0;
+					System.out.println("Transaction unsuccessful. \nPrevious balance: $" + (testBank.getBalance(card1) - amount) + "\nDeposited: $" + amount + "\nCurrent Balance: $" + testBank.getBalance(card1));
+				}
 			}
 			
 			
@@ -50,7 +62,6 @@ public class ATM {
 			}
 			
 			System.out.println("Please enter PIN code: ");
-			
 			try{
 				PIN = input.nextInt();
 			}catch(NumberFormatException e){
@@ -63,6 +74,8 @@ public class ATM {
 			System.out.println("Would you like to Withdrawal(W) or Deposit(D)?:  ");
 			char transaction = input.next().charAt(0);
 			execute(testCard, transaction);
+		}else{
+			return;
 		}
 	}
 }

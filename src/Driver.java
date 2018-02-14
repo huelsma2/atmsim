@@ -19,9 +19,9 @@ public class Driver {
 		Scanner stdin = new Scanner(System.in);
 		while(true)
 		{
-			int accnum;
+			int accnum = -1;
 			try{accnum= stdin.nextInt();} catch (NumberFormatException e) { System.out.println("Invalid format"); }
-			//new ATM(_bank).start(accnum);
+			new ATM(_bank).start(accnum);
 			System.out.println("Transaction finished. Continue? (y for yes, anything else for no");
 			if(!stdin.next().equals("y"))
 				break;
