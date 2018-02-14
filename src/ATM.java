@@ -6,7 +6,6 @@ public class ATM {
 		private Card testCard;
 		private int PIN;
 		private Scanner input = new Scanner(System.in);
-		private String action;
 		private int amount;
 		
 		
@@ -27,7 +26,11 @@ public class ATM {
 				}catch(NumberFormatException e){
 					System.out.println("Invalid amount");
 				}
+<<<<<<< HEAD
 				//testBank.getAccount(card1).withdrawal(amount);
+=======
+				testBank.withdraw(card1, amount);
+>>>>>>> branch 'master' of https://github.com/huelsma2/atmsim
 			}
 			
 			if(transaction == 'D'){
@@ -37,7 +40,11 @@ public class ATM {
 				}catch(NumberFormatException e){
 					System.out.println("Invalid amount");
 				}
+<<<<<<< HEAD
 				//testBank.getAccount(card1).deposit(amount);
+=======
+				testBank.deposit(card1, amount);
+>>>>>>> branch 'master' of https://github.com/huelsma2/atmsim
 			}
 			
 			
@@ -50,7 +57,6 @@ public class ATM {
 				return;
 			}
 			
-			accountNum = input.nextInt();
 			System.out.println("Please enter PIN code: ");
 			
 			try{
@@ -61,8 +67,7 @@ public class ATM {
 			}
 			
 			System.out.println("Would you like to Withdrawal(W) or Deposit(D):  ");
-				action = input.nextLine();
-			char transaction = action.charAt(0);
+			char transaction = input.next().charAt(0);
 			execute(testCard, transaction);
 			
 		}
