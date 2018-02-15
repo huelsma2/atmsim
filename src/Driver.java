@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class Driver {
 
 	static Bank _bank;
-	//static char transaction;
 	public static void main(String[] args)
 	{
 		HashMap<Integer, Account> accountList = new HashMap<Integer, Account>();
