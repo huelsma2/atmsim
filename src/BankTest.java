@@ -38,7 +38,6 @@ public class BankTest{
 	 * 
 	 */
 	
-	@Test
 	public void setup() {
 	accountList.put(1234, new Account(1234, 6789, 80.00));
 	accountList.put(6789, new Account(6789, 4321, 60.00));
@@ -77,6 +76,7 @@ public class BankTest{
 	 */
 	@Test
 	public void TestBalanceOfEachAccount() {
+		setup();
 		assertEquals(80.00, _bank.getBalance(card1), 0); 
 		assertEquals(60.00, _bank.getBalance(card2), 0); 	
 	
@@ -88,6 +88,7 @@ public class BankTest{
 	 */
 	@Test
 	public void TestDeposit() {
+		setup();
 		assertTrue(_bank.deposit(card1, 10.00));
 		assertEquals(90.00, _bank.getBalance(card1), 0); 
 	
@@ -103,11 +104,12 @@ public class BankTest{
 	 */
 	@Test
 	public void TestWithdraw() {
+		setup();
 		assertTrue(_bank.withdraw(card1, 30.00)); 
-		assertEquals(60.00, _bank.getBalance(card1), 0); 
+		assertEquals(50.00, _bank.getBalance(card1), 0); 
 	
 		assertTrue(_bank.withdraw(card2, 50.00)); 
-		assertEquals(20.00, _bank.getBalance(card2), 0); 
+		assertEquals(10.00, _bank.getBalance(card2), 0); 
 	
 	}
 	
@@ -117,6 +119,7 @@ public class BankTest{
 	 */
 	@Test
 	public void OverWithDraw() {
+		setup();
 		assertFalse(_bank.withdraw(card1, 120.00)); 
 		assertEquals(80.00, _bank.getBalance(card1), 0); 
 		
@@ -125,6 +128,17 @@ public class BankTest{
 	
 	}
 	
+	
+	@Test
+	public void WithDrawNegative() {
+		setup();
+		assertFalse(_bank.withdraw(card1, -100.00)); 
+		assertEquals(80.00, _bank.getBalance(card1), 0); 
+		
+		assertFalse(_bank.withdraw(card2, -200.00)); 
+		assertEquals(60.00, _bank.getBalance(card2), 0); 
+	
+	}
 	
 	
 }

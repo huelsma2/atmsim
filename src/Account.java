@@ -60,16 +60,20 @@ public class Account {
 	
 	/** Validates and withdrawals money from the account
 	 * 
+	 * @while cannot withdraw negative number
 	 * @param money Dollar value to attempt to withdrawal from the account
 	 * @return True if money successfully removed from the account, false if non enough money
 	 */
 	public boolean withdrawal(double money) {
+		while(money > 0) {
+		
 		if(_balance >= money) {
 			_balance -= money;
 			return true;
 		}
-		System.out.println("Balance is " + _balance + " withdrawal " + money);
 		return false;
+		}
+			return false;
 	}
 	
 	/** Deposits money into the account
