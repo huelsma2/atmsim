@@ -65,7 +65,7 @@ public class ATM {
 				}
 			}
 			
-			
+			input.close();
 		}
 		
 		/**Start method takes an input of account number and initiates the ATM
