@@ -52,6 +52,7 @@ public class BankTest{
 	 */
 	@Test
 	public void TestValidAccountNumber() {
+		setup();
 		assertTrue(_bank.validate(card1));
 		assertTrue(_bank.validate(card2));
 	
@@ -63,12 +64,24 @@ public class BankTest{
 	 */
 	@Test
 	public void TestInvalidAccountNumber() {
+		setup();
 		assertFalse(_bank.validate(card3));
 		assertFalse(_bank.validate(card4));
 	
-		
+	}
+	
+	/** 
+	 * Tests to insure incorrect Pin with Card1 fails
+	 * Tests to insure incorrect Pin with Card2 fails
+	 */
+	@Test
+	public void CheckValidAccountIncorrectPin() {
+		setup();
+		assertFalse(_bank.validate(card1, 1235));
+		assertFalse(_bank.validate(card2, 6781)); 
 	
 	}
+	
 	
 	/** 
 	 * Tests if card1's Balance is correct to corresponding beginning balance
@@ -128,6 +141,11 @@ public class BankTest{
 	
 	}
 	
+	/** 
+	 * Tests withdrawing a negative number from card1
+	 * Tests withdrawing a negative number from card2
+	 *
+	 */
 	
 	@Test
 	public void WithDrawNegative() {
@@ -139,6 +157,8 @@ public class BankTest{
 		assertEquals(60.00, _bank.getBalance(card2), 0); 
 	
 	}
+	
+
 	
 	
 }
