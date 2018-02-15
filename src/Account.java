@@ -64,10 +64,11 @@ public class Account {
 	 * @return True if money successfully removed from the account, false if non enough money
 	 */
 	public boolean withdrawal(double money) {
-		if(_balance > money) {
+		if(_balance >= money) {
 			_balance -= money;
 			return true;
 		}
+		System.out.println("Balance is " + _balance + " withdrawal " + money);
 		return false;
 	}
 	
