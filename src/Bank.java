@@ -62,7 +62,7 @@ public class Bank {
 	 * @param in the card being read by the ATM, whose information is sent to this bank
 	 * @return the account which belongs to the card sent to this bank, or null, if the card is invalid
 	 */
-	public boolean withdraw(Card in, int amt)
+	public boolean withdraw(Card in, double amt)
 	{
 		if(!validate(in))
 			return false;
@@ -71,7 +71,7 @@ public class Bank {
 	}
 	
 
-	public boolean deposit(Card in, int amt)
+	public boolean deposit(Card in, double amt)
 	{
 		if(!validate(in))
 			return false;
