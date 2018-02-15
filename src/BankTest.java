@@ -124,10 +124,10 @@ public class BankTest{
 	@Test
 	public void OverWithDraw() {
 		assertFalse(_bank.withdraw(card1, 120.00)); 
-		assertEquals(60.00, _bank.getBalance(card1), 0); 
-	
-		assertFalse(_bank.withdraw(card2, 60.00)); 
-		assertEquals(20.00, _bank.getBalance(card2), 0); 
+		assertEquals(80.00, _bank.getBalance(card1), 0); 
+		
+		assertFalse(_bank.withdraw(card2, 70.00)); 
+		assertEquals(60.00, _bank.getBalance(card2), 0); 
 	
 	}
 	
