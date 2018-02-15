@@ -58,9 +58,10 @@ public class Bank {
 	}
 	
 	/**
-	 * Returns the account belonging to the card sent to this bank
-	 * @param in the card being read by the ATM, whose information is sent to this bank
-	 * @return the account which belongs to the card sent to this bank, or null, if the card is invalid
+	 * Allows an ATM contacting this bank to make a withdrawal request, for an amount of money.
+	 * @param in The card being read by the ATM whose information is sent to this bank
+	 * @param amt The amount of money that will be withdrawn from the ATM
+	 * @return
 	 */
 	public boolean withdraw(Card in, double amt)
 	{
@@ -70,7 +71,12 @@ public class Bank {
 		
 	}
 	
-
+	/**
+	 * Deposits an amount of money that a user inserts into an ATM into an account in this bank
+	 * @param in The card being read by the ATM whose information is being sent to this bank
+	 * @param amt The amount of money that will be deposited into the account defined by in
+	 * @return
+	 */
 	public boolean deposit(Card in, double amt)
 	{
 		if(!validate(in))
