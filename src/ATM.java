@@ -75,6 +75,7 @@ public class ATM {
 			testCard = new Card(accountNum);
 			
 			if(!testBank.validate(testCard)){
+				System.out.println("Account number not recognized.");
 				return;
 			}
 			
