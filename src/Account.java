@@ -68,7 +68,6 @@ public class Account {
 			_balance -= money;
 			return true;
 		}
-		System.out.println("Balance is " + _balance + " withdrawal " + money);
 		return false;
 	}
 	

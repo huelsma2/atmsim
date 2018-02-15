@@ -11,7 +11,6 @@ public class ATM {
 		private Bank testBank;
 		private Card testCard;
 		private int PIN;
-		private Scanner input = new Scanner(System.in);
 		private int amount = 0;
 		
 		/**
@@ -30,7 +29,7 @@ public class ATM {
 		 * @param card1
 		 * @param transaction
 		 */
-		public void execute(Card card1, char transaction){
+		public void execute(Card card1, char transaction, Scanner input){
 			
 			
 			if(transaction == 'W' || transaction == 'w'){
@@ -65,14 +64,13 @@ public class ATM {
 				}
 			}
 			
-			input.close();
 		}
 		
 		/**Start method takes an input of account number and initiates the ATM
 		 * process of waiting for account number input.
 		 * @param accountNum
 		 */
-		public void start(int accountNum){
+		public void start(int accountNum, Scanner input){
 				
 			testCard = new Card(accountNum);
 			
@@ -92,7 +90,7 @@ public class ATM {
 				
 			System.out.println("Would you like to Withdrawal(W) or Deposit(D)?:  ");
 			char transaction = input.next().charAt(0);
-			execute(testCard, transaction);
+			execute(testCard, transaction,input);
 		}else{
 			return;
 		}

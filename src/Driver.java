@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Driver {
 
 	static Bank _bank;
-	static char transaction;
+	//static char transaction;
 	public static void main(String[] args)
 	{
 		HashMap<Integer, Account> accountList = new HashMap<Integer, Account>();
@@ -20,14 +20,13 @@ public class Driver {
 		Scanner stdin = new Scanner(System.in);
 		while(true)
 		{
-			System.out.println("SIMULATION: USER ENTERS CARD (ENTER ACCOUNT NUMBER):");
+			System.out.println("SIMULATION: USER ENTERS CARD (ENTER ACCOUNT NUMBER) Enter 'quit' to quit:");
+			String input = stdin.next();
 			int accnum = -1;
-			try{accnum= stdin.nextInt();} catch (NumberFormatException e) { System.out.println("Invalid format"); }
-			new ATM(_bank).start(accnum);
-			System.out.println("Transaction finished. Continue? (y for yes, n no)");
-			transaction = stdin.next().charAt(0);
-			if(!(transaction == 'y') || !(transaction == 'Y'))
-				break;
+			try{accnum= Integer.parseInt(input);} 
+			catch (NumberFormatException e) { if(input.toLowerCase().equals("quit")) break;}
+			new ATM(_bank).start(accnum,stdin);
+			System.out.println("Transaction finished.");
 		}
 		stdin.close();
 	}
