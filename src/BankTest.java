@@ -18,7 +18,7 @@ import static org.hamcrest.CoreMatchers.*;
 
 public class BankTest{
 	
-	HashMap<Integer, Account> accountList = new HashMap<Integer, Account>();
+	static HashMap<Integer, Account> accountList = new HashMap<Integer, Account>();
 	static Bank _bank;
 	static Account _account;
 	
@@ -27,6 +27,13 @@ public class BankTest{
 	Card card3 = new Card(1111); //Bad account Value 
 	Card card4 = new Card(12345); //Bad account Value
 	
+	static
+	{
+		accountList.put(1234, new Account(1234, 6789, 80.00));
+		accountList.put(6789, new Account(6789, 4321, 60.00));
+		_bank = new Bank(accountList);
+
+	};
 	
 	/**
 	 * Adds accounts in the following HashMap
