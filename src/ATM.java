@@ -42,10 +42,10 @@ public class ATM {
 				}
 				
 				if(testBank.withdraw(card1, amount)){
-					System.out.println("Transaction successful. \nPrevious balance: $" + (testBank.getBalance(card1) + amount) + "\nWithdrawn: $" + amount + "Current Balance: $" + testBank.getBalance(card1));
+					System.out.println("Transaction successful. \nPrevious balance: $" + (testBank.getBalance(card1) + amount) + "\nWithdrawn: $" + amount + "\nCurrent Balance: $" + testBank.getBalance(card1));
 				}else{
 					amount = 0;
-					System.out.println("Transaction unsuccessful. \nPrevious balance: $" + (testBank.getBalance(card1) + amount) + "\nWithdrawn: $" + amount + "Current Balance: $" + testBank.getBalance(card1));
+					System.out.println("Transaction unsuccessful. \nPrevious balance: $" + (testBank.getBalance(card1) + amount) + "\nWithdrawn: $" + amount + "\nCurrent Balance: $" + testBank.getBalance(card1));
 				}
 			}
 			
