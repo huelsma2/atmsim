@@ -6,14 +6,11 @@
  */
 
 public class CashDispenser {
-
 	
-	public void dispenese() {
+	public String dispenese(int dispenseNumber) {
 		
 		
-		System.out.print(printTime() + " " +   + " " + );
-		
-		
+		return Integer.toString(dispenseNumber);
 		
 	}
 	
