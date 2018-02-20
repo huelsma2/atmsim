@@ -122,7 +122,7 @@ public class ATM {
 				}
 				if(hasTime) printTime(command[0]); else printTime();
 				try{ 
-					testCard = new Card(_cardReader.acctNumber(Integer.parseInt(hasTime? command[2] : command[1])));
+					testCard = new Card(_cardReader.acctNumber(new Card(Integer.parseInt(hasTime? command[2] : command[1]))));
 					System.out.println("Card read. Account number: " + testCard.accountNumber());
 					state = STATES.TAKENUMBER;
 					if(hasTime) printTime(command[0]); else printTime();
@@ -140,7 +140,7 @@ public class ATM {
 				}
 				if(hasTime) printTime(command[0]); else printTime();
 				try{ 
-					testCard = new Card(_cardReader.acctNumber(Integer.parseInt(hasTime? command[2] : command[1])));
+					//testCard = new Card(_cardReader.acctNumber(Integer.parseInt(hasTime? command[2] : command[1])));
 					System.out.println("Card read. Account number: " + testCard.accountNumber());
 					state = STATES.TAKENUMBER;
 				}
