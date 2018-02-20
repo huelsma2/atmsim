@@ -11,11 +11,10 @@ public class CashDispenser {
 	public void dispenese() {
 		
 		
-		System.out.print(printTime() + "" + );
+		System.out.print(printTime() + " " +   + " " + );
 		
 		
 		
 	}
 	
-
 }
