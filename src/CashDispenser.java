@@ -7,7 +7,7 @@
 
 public class CashDispenser {
 	
-	public String dispenese(int dispenseNumber) {
+	public String dispense(int dispenseNumber) {
 		
 		
 		return Integer.toString(dispenseNumber);

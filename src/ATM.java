@@ -16,6 +16,8 @@ public class ATM {
 		private CashDispenser _cashDispenser;
 		private CardReader _cardReader;
 		
+		//A set of all valid states the ATM can be in. eg it can be waiting for a customer, waiting
+		//		for a pin, waiting for a button, or waiting for transaction amounts.
 		private static enum STATES {NOCUSTOMER, TAKEPIN, TAKEBUTTON, TAKEWITHDRAW, TAKEDEPOSIT};
 		private STATES state;
 		
@@ -29,8 +31,28 @@ public class ATM {
 			state = STATES.NOCUSTOMER;
 		}
 		
+		/**
+		 * Private helper method to "display a message on the screen" (print to the console) by calling 
+		 * runCommand with a "DIS" command.
+		 * @param command command is sent in simply to check if a timestamp was included or not
+		 * @param message message to be "displayed on the screen"
+		 */
+		private void println(String[] command, String message)
+		{
+			boolean hasTime = command.length==3;
+			if(hasTime)
+				runCommand(command[0], "DIS", message);
+			else
+				runCommand("DIS", message);
+		}
 		
-		public void runCommand(String[] command)
+		/**
+		 * Takes in a command (Assumed to be tested as a valid command from the simulator), and performs
+		 * an operation according to the command. The command argument is validated in each case.
+		 * @param command A tuple of 2 or 3 strings, which, in the former, contains a command and an argument.
+		 * in the latter, it contains a timestamp, a command, and an argument.
+		 */
+		public void runCommand(String... command)
 		{
 			boolean hasTime = command.length==3;
 			switch(hasTime? command[1].toUpperCase() : command[0].toUpperCase())
@@ -39,42 +61,39 @@ public class ATM {
 			{
 				if(state != STATES.NOCUSTOMER) 
 				{
-					System.out.println("I'm already reading a card, asshole");
+					println(command, "New Card cannot be read during an existing transaction");
 					break;
 				}
-				if(hasTime) printTime(command[0]); else printTime();
 				try{ 
 					testCard = new Card(_cardReader.acctNumber(new Card(Integer.parseInt(hasTime? command[2] : command[1]))));
 					if(testBank.validate(testCard))
 					{
-						System.out.println("Card read. Account number: " + testCard.accountNumber());
+						println(command,"Card read. Account number: " + testCard.accountNumber());
 						state = STATES.TAKEPIN;
-						if(hasTime) printTime(command[0]); else printTime();
-						System.out.println("Enter Pin:");
+						println(command,"Enter Pin:");
 					}
 					else
 					{
-						System.out.println("Account does not exist");
+						println(command,"Account does not exist");
 					}
 				}
-				catch(NumberFormatException e){System.out.println("Invalid Card...");}
+				catch(NumberFormatException e){println(command,"Invalid account number");}
 				break;
 			}
 			case "NUM":
 			{
 				if(state != STATES.TAKEPIN && state != STATES.TAKEWITHDRAW && state != STATES.TAKEDEPOSIT) 
 				{
-					System.out.println("Don't you put numbers in me when I'm not ready, asshole");
+					println(command,"Entering a number has no effect during the current state of the ATM");
 					break;
 				}
-				if(hasTime) printTime(command[0]); else printTime();
 				try{ 
 					lastNumber = Integer.parseInt(hasTime? command[2] : command[1]);
 					if(state==STATES.TAKEPIN) 
 					{
 						if(testBank.validate(testCard))
 						{
-							System.out.println("Pin entered. Choose Transaction:");
+							println(command,"Pin entered. Choose Transaction:");
 							state=STATES.TAKEBUTTON;
 						}
 					}
@@ -92,26 +111,82 @@ public class ATM {
 					{
 						if(testBank.deposit(testCard, lastNumber))
 							{
-							System.out.println("Thanks");
+							println(command,"Money deposited");
 							state=STATES.TAKEBUTTON;
 							}
 						else
 							System.out.println("how did you get here");
 					}
 				}
-				catch(NumberFormatException e){System.out.println("Invalid Number..."); lastNumber=-1;}
+				catch(NumberFormatException e){println(command, "Invalid Number..."); lastNumber=-1;}
 				break;
 			}
+
+			case "BUTTON":
+			{
+				if(state != STATES.TAKEBUTTON && ((hasTime && !command[2].toLowerCase().equals("cancel"))
+						|| (!hasTime && !command[1].toLowerCase().equals("cancel")))) 
+				{
+					println(command,"Button has no effect currently.");
+					break;
+				}
+				String buttonType = hasTime? command[2] : command[1];
+				if(buttonType.toLowerCase().equals("w"))
+				{
+					println(command,"Enter amount:");
+					state = STATES.TAKEWITHDRAW;
+				}
+				else if(buttonType.toLowerCase().equals("d"))
+				{
+					println(command,"Enter amount:");
+					state = STATES.TAKEDEPOSIT;
+				}
+				else if (buttonType.toLowerCase().equals("cb"))
+				{
+					println(command,"Balance: " + testBank.getBalance(testCard));
+				}
+				else if(buttonType.toLowerCase().equals("cancel"))
+				{
+					state = STATES.NOCUSTOMER;
+				}
+				else
+				{
+					System.out.println("That's not a button...");
+				}
+				break;
+			}
+			
+			case "PRINT":
+			{
+				Timestamp ts = new Timestamp(new Date().getTime());
 				
+				_printer.print(hasTime? command[0] : ts.toString().split(" ")[1].split(".")[0], 
+						hasTime? command[1] : command[0], hasTime? command[2]:command[1]);
+				break;
+			}
+			
+			case "DIS":
+			{
+				if(hasTime) printTime(command[0]); else printTime();
+				System.out.println(hasTime? command[1]:command[0]);
+			}
+			default: {System.out.println("This should not be able to happen!"); break;}
 			}
 		}
 
+		/**
+		 * Prints out the current time according to the system running this simulation.
+		 */
 		public void printTime()
 		{
 			Timestamp ts = new Timestamp(new Date().getTime());
 			System.out.print(ts.toString().split(" ")[1].split(".")[0]);
 		}
 		
+		/**
+		 * Prints out a predefined timestamp
+		 * @param t the timestamp
+		 */
 		private void printTime(String t)
 		{
 			System.out.print(t);
