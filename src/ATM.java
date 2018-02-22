@@ -91,17 +91,22 @@ public class ATM {
 					lastNumber = Integer.parseInt(hasTime? command[2] : command[1]);
 					if(state==STATES.TAKEPIN) 
 					{
-						if(testBank.validate(testCard))
+						if(testBank.validate(testCard, lastNumber))
 						{
 							println(command,"Pin entered. Choose Transaction:");
 							state=STATES.TAKEBUTTON;
+						}
+						else
+						{
+							println(command, "Invalid pin.");
 						}
 					}
 					else if(state==STATES.TAKEWITHDRAW)
 					{
 						if(testBank.withdraw(testCard, lastNumber))
 							{
-							_cashDispenser.dispense(lastNumber);
+							int with = _cashDispenser.dispense(lastNumber);
+							println(command, "Cash deposited: $" + with);
 							state=STATES.TAKEBUTTON;
 							}
 						else

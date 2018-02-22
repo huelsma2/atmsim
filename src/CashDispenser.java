@@ -7,10 +7,10 @@
 
 public class CashDispenser {
 	
-	public String dispense(int dispenseNumber) {
+	public int dispense(int dispenseNumber) {
 		
 		
-		return Integer.toString(dispenseNumber);
+		return dispenseNumber;
 		
 	}
 	
