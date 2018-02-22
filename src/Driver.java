@@ -1,5 +1,5 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -11,9 +11,10 @@ import java.util.Scanner;
  */
 public class Driver {
 	
+	static final String _fileLocation = "InputCommands.txt";
+	
 	static Scanner stdin = new Scanner(System.in);
 	static ATM atm;
-	static final String _fileLocation = "InputCommands.txt";
 
 	public static void main(String[] args)
 	{
@@ -38,7 +39,7 @@ public class Driver {
 	 }
 	 
 	 private static void consoleInput() {
-		 System.out.println("ATM command ([E]xit): ");
+		 System.out.println("ATM command ([E]xit):");
 		 String input = stdin.next();
 		 if(input.equals("E") || input.equals("e")) simulationLoop();
 		 inputCommand(input);
@@ -47,19 +48,24 @@ public class Driver {
 	 
 	 private static void fileInput() {
 		 Scanner fileScanner = null;
-		 File file = new File(_fileLocation);
+		 InputStream in = Driver.class.getResourceAsStream(_fileLocation);
 		 String input;
 		 
 		 try {
-				fileScanner = new Scanner(file);
-			} catch (FileNotFoundException e) {
-					System.out.println("Failed at opening file " + e);
+				fileScanner = new Scanner(in);
+			} catch (Exception e) {
+					System.out.println("Failed at opening resource " + e);
 					System.exit(0);
 			}
 		 while(fileScanner.hasNextLine()) {
 			 input = fileScanner.nextLine();
 			 inputCommand(input);
 		 }
+		 try {
+			in.close();
+		} catch (IOException e) {
+			System.out.println("Failed at closing resource " + e);
+		}
 		 simulationLoop();
 	 }
 	 
@@ -97,7 +103,7 @@ public class Driver {
 	 }
 	 
 	 private static void exitSim() {
-		 System.out.println("e works");
+		 stdin.close();
 		 System.exit(0);
 	 }
 }

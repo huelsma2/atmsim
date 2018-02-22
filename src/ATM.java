@@ -12,9 +12,9 @@ public class ATM {
 		private Bank testBank;
 		private Card testCard;
 		private int lastNumber = -1;
-		private Printer _printer;
-		private CashDispenser _cashDispenser;
-		private CardReader _cardReader;
+		private Printer _printer = new Printer();
+		private CashDispenser _cashDispenser = new CashDispenser();
+		private CardReader _cardReader = new CardReader();
 		
 		//A set of all valid states the ATM can be in. eg it can be waiting for a customer, waiting
 		//		for a pin, waiting for a button, or waiting for transaction amounts.
@@ -64,7 +64,7 @@ public class ATM {
 					println(command, "New Card cannot be read during an existing transaction");
 					break;
 				}
-				try{ 
+				try{
 					testCard = new Card(_cardReader.acctNumber(new Card(Integer.parseInt(hasTime? command[2] : command[1]))));
 					if(testBank.validate(testCard))
 					{
@@ -105,7 +105,7 @@ public class ATM {
 							state=STATES.TAKEBUTTON;
 							}
 						else
-							System.out.println("Not enough cash, asshat");
+							System.out.println("The withdrawl amount is greater than the account balance");
 					}
 					else if (state==STATES.TAKEDEPOSIT)
 					{
@@ -168,7 +168,8 @@ public class ATM {
 			case "DIS":
 			{
 				if(hasTime) printTime(command[0]); else printTime();
-				System.out.println(hasTime? command[1]:command[0]);
+				System.out.println(hasTime? command[2]:command[1]);
+				break;
 			}
 			default: {System.out.println("This should not be able to happen!"); break;}
 			}
