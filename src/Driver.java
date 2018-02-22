@@ -40,7 +40,7 @@ public class Driver {
 	 
 	 private static void consoleInput() {
 		 System.out.println("ATM command ([E]xit):");
-		 String input = stdin.next();
+		 String input = stdin.nextLine();
 		 if(input.equals("E") || input.equals("e")) simulationLoop();
 		 inputCommand(input);
 		 consoleInput();

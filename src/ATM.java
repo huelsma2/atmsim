@@ -70,11 +70,11 @@ public class ATM {
 					{
 						println(command,"Card read. Account number: " + testCard.accountNumber());
 						state = STATES.TAKEPIN;
-						println(command,"Enter Pin:");
+						System.out.println("Enter Pin:");
 					}
 					else
 					{
-						println(command,"Account does not exist");
+						System.out.println("Account does not exist");
 					}
 				}
 				catch(NumberFormatException e){println(command,"Invalid account number");}
@@ -133,12 +133,12 @@ public class ATM {
 				String buttonType = hasTime? command[2] : command[1];
 				if(buttonType.toLowerCase().equals("w"))
 				{
-					println(command,"Enter amount:");
+					System.out.println("Enter amount:");
 					state = STATES.TAKEWITHDRAW;
 				}
 				else if(buttonType.toLowerCase().equals("d"))
 				{
-					println(command,"Enter amount:");
+					System.out.println("Enter amount:");
 					state = STATES.TAKEDEPOSIT;
 				}
 				else if (buttonType.toLowerCase().equals("cb"))
