@@ -181,7 +181,7 @@ public class ATM {
 		public void printTime()
 		{
 			Timestamp ts = new Timestamp(new Date().getTime());
-			System.out.print(ts.toString().split(" ")[1].split("\\.")[0]);
+			System.out.print(ts.toString().split(" ")[1].split("\\.")[0]+ " ");
 		}
 		
 		/**
@@ -190,6 +190,6 @@ public class ATM {
 		 */
 		private void printTime(String t)
 		{
-			System.out.print(t);
+			System.out.print(t + " ");
 		}
 }
