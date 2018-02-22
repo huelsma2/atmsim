@@ -165,7 +165,7 @@ public class ATM {
 			{
 				Timestamp ts = new Timestamp(new Date().getTime());
 				
-				_printer.print(hasTime? command[0] : ts.toString().split(" ")[1].split(".")[0], 
+				_printer.print(hasTime? command[0] : ts.toString().split(" ")[1].split("\\.")[0], 
 						hasTime? command[1] : command[0], hasTime? command[2]:command[1]);
 				break;
 			}
