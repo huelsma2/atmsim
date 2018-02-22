@@ -6,7 +6,7 @@ import java.util.Scanner;
 /**
  * Test driver which creates a bank with a map of accounts, and simulates a Customer putting their card
  * in a machine.
- * @author Andrew Huelsman
+ * @author Steve Messer
  *
  */
 public class Driver {
