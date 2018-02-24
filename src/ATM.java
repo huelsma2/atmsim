@@ -110,13 +110,16 @@ public class ATM {
 							state=STATES.TAKEBUTTON;
 							}
 						else
+							{
 							System.out.println("The withdrawl amount is greater than the account balance");
+							state=STATES.TAKEBUTTON;
+							}
 					}
 					else if (state==STATES.TAKEDEPOSIT)
 					{
 						if(testBank.deposit(testCard, lastNumber))
 							{
-							println(command,"Money deposited");
+							println(command,"Money deposited: " + lastNumber);
 							state=STATES.TAKEBUTTON;
 							}
 						else
@@ -152,6 +155,7 @@ public class ATM {
 				}
 				else if(buttonType.toLowerCase().equals("cancel"))
 				{
+					println(command, "Transaction finished. Have a good day!");
 					state = STATES.NOCUSTOMER;
 				}
 				else
