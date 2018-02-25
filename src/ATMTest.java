@@ -55,121 +55,12 @@ public class ATMTest{
 	_cashdispenser = new CashDispenser();
 	_cardreader = new CardReader();
  }
-
-
-	
-	/** 
-	 * Tests to see if current time is printed to console.
-	 */
-	@Test
-	public void TestPrintTime() {
-		setup();
-		
-		_atm.printTime();
-	}
-	
-	@Test
-	public void TestInvalidAccountNumber() {
-		setup();
-		assertFalse(_bank.validate(card3));
-		assertFalse(_bank.validate(card4));
-	
-	}
-	
-	/** 
-	 * Tests to insure incorrect Pin with Card1 fails
-	 * Tests to insure incorrect Pin with Card2 fails
-	 */
-	@Test
-	public void CheckValidAccountIncorrectPin() {
-		setup();
-		assertFalse(_bank.validate(card1, 1235));
-		assertFalse(_bank.validate(card2, 6781)); 
-	
-	}
-	
-	
-	/** 
-	 * Tests if card1's Balance is correct to corresponding beginning balance
-	 * Tests if card2's Balance is correct to corresponding beginning balance
-	 */
-	@Test
-	public void TestBalanceOfEachAccount() {
-		setup();
-		assertEquals(80.00, _bank.getBalance(card1), 0); 
-		assertEquals(60.00, _bank.getBalance(card2), 0); 	
-	
-	}
-	
-	/** 
-	 * Tests depositing from card1 of 90.00
-	 * Tests deposit from card 2 of 10.00
-	 */
-	@Test
-	public void TestDeposit() {
-		setup();
-		assertTrue(_bank.deposit(card1, 10.00));
-		assertEquals(90.00, _bank.getBalance(card1), 0); 
-	
-		assertTrue(_bank.deposit(card2, 10.00)); 
-		assertEquals(70.00, _bank.getBalance(card2), 0); 
-	
-	}
-	
-	
-	/** 
-	 * Tests if card1's Balance is correct to corresponding beginning balance
-	 * Tests if card2's Balance is correct to corresponding beginning balance
-	 */
-	@Test
-	public void TestWithdraw() {
-		setup();
-		assertTrue(_bank.withdraw(card1, 30.00)); 
-		assertEquals(50.00, _bank.getBalance(card1), 0); 
-	
-		assertTrue(_bank.withdraw(card2, 50.00)); 
-		assertEquals(10.00, _bank.getBalance(card2), 0); 
-	
-	}
-	
-	/** 
-	 * Tests Over withdrawing from card1 of 120.00 when balance is 60.00
-	 * Tests Over withdrawing from card2 of 60.00 when balance is 20.00
-	 */
-	@Test
-	public void OverWithDraw() {
-		setup();
-		assertFalse(_bank.withdraw(card1, 120.00)); 
-		assertEquals(80.00, _bank.getBalance(card1), 0); 
-		
-		assertFalse(_bank.withdraw(card2, 70.00)); 
-		assertEquals(60.00, _bank.getBalance(card2), 0); 
-	
-	}
-	
-	/** 
-	 * Tests withdrawing a negative number from card1
-	 * Tests withdrawing a negative number from card2
-	 *
-	 */
-	
-	@Test
-	public void WithDrawNegative() {
-		setup();
-		assertFalse(_bank.withdraw(card1, -100.00)); 
-		assertEquals(80.00, _bank.getBalance(card1), 0); 
-		
-		assertFalse(_bank.withdraw(card2, -200.00)); 
-		assertEquals(60.00, _bank.getBalance(card2), 0); 
-	
-	}
-	
 	
 	/**
 	 * Tests ATM commands
 	 */
 	@Test
-	public void CommandsTest(){
+	public void TestCommands1(){
 		setup();
 		
 		String input = "CARDREAD 1234";
@@ -183,12 +74,92 @@ public class ATMTest{
 			cardNumber = inputArray[1].toUpperCase();
 		}
 		
-		assertTrue(_atm.getState().equals("NOCUSTOMER"));
 		try{
 			_atm.runCommand(inputArray);
 		}catch(Exception e){
 			fail();
 		}
+		
+	}
+	
+	/**
+	 * Tests ATM commands
+	 */
+	@Test
+	public void TestCommands2(){
+		setup();
+		
+		String input = "CARDREAD 1234";
+		String[] inputArray = input.split(" ");
+		
+		String command;
+		String cardNumber;
+		
+		if(inputArray.length ==2){
+			command = inputArray[0].toUpperCase();
+			cardNumber = inputArray[1].toUpperCase();
+		}
+		
+		try{
+			_atm.runCommand(inputArray);
+		}catch(Exception e){
+			fail();
+		}
+		
+	}
+	
+	/**
+	 * Tests ATM commands
+	 */
+	@Test
+	public void TestNoCustomerState(){
+		setup();
+
+		assertTrue(_atm.getState().equals("NOCUSTOMER"));
+		
+	}
+	
+	/**
+	 * Tests ATM commands
+	 */
+	@Test
+	public void TestTakePinState(){
+		setup();
+
+		assertTrue(_atm.getState().equals("NOCUSTOMER"));
+		
+	}
+	
+	/**
+	 * Tests ATM commands
+	 */
+	@Test
+	public void TestTakeButtonState(){
+		setup();
+
+		assertTrue(_atm.getState().equals("NOCUSTOMER"));
+		
+	}
+	
+	/**
+	 * Tests ATM commands
+	 */
+	@Test
+	public void TestTakeWithdrawState(){
+		setup();
+
+		assertTrue(_atm.getState().equals("NOCUSTOMER"));
+		
+	}
+	
+	/**
+	 * Tests ATM commands
+	 */
+	@Test
+	public void TestTakeDepositState(){
+		setup();
+
+		assertTrue(_atm.getState().equals("NOCUSTOMER"));
 		
 	}
 	
