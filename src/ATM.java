@@ -106,7 +106,7 @@ public class ATM {
 						if(testBank.withdraw(testCard, lastNumber))
 							{
 							int with = _cashDispenser.dispense(lastNumber);
-							println(command, "Cash deposited: $" + with);
+							println(command, "Cash withdrawn: $" + with);
 							state=STATES.TAKEBUTTON;
 							}
 						else
@@ -119,7 +119,7 @@ public class ATM {
 					{
 						if(testBank.deposit(testCard, lastNumber))
 							{
-							println(command,"Money deposited: " + lastNumber);
+							println(command,"Cash deposited: " + lastNumber);
 							state=STATES.TAKEBUTTON;
 							}
 						else

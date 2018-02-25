@@ -36,7 +36,7 @@ public class ATMTest{
 	 * 
 	 */
 	
-	static
+	static//Do we need this, doesn't setup() do this?
 	{
 		accountList.put(1234, new Account(1234, 6789, 80.00));
 		accountList.put(6789, new Account(6789, 4321, 60.00));
