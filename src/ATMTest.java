@@ -41,15 +41,6 @@ public class ATMTest{
 	 * 
 	 */
 	
-	static//Do we need this, doesn't setup() do this?
-	{
-		accountList.put(1234, new Account(1234, 6789, 80.00));
-		accountList.put(6789, new Account(6789, 4321, 60.00));
-		_bank = new Bank(accountList);
-		_atm = new ATM(_bank);
-
-	};
-	
 	
 
 	/** 
@@ -65,20 +56,7 @@ public class ATMTest{
 	_cardreader = new CardReader();
  }
 
-	
-	/** 
-	 * Tests if card1's account # is valid to an account
-	 * Tests if card2's account # is valid to an account
-	 */
-	@Test
-	public void TestValidAccountNumber() {//Couldn't we use the banks validate ? I believe we can since this is still testing functionality of bank, hardware is seperate
-		setup();
-		//assertTrue(_bank.validate(card1));
-		//assertTrue(_bank.validate(card2));
-		//_cardreader.acctNumber(card1);
-		_atm.runCommand("CARDREAD " +  Integer.toString(_cardreader.acctNumber(card1)));
-	
-	}
+
 	
 	/** 
 	 * Tests to see if current time is printed to console.
@@ -188,15 +166,26 @@ public class ATMTest{
 	
 	
 	/**
-	 * Tests commands
+	 * Tests ATM commands
 	 */
 	@Test
 	public void CommandsTest(){
 		setup();
 		
+		String input = "CARDREAD 1234";
+		String[] inputArray = input.split(" ");
+		
+		String command;
+		String cardNumber;
+		
+		if(inputArray.length ==2){
+			command = inputArray[0].toUpperCase();
+			cardNumber = inputArray[1].toUpperCase();
+		}
+		
+		assertTrue(_atm.getState().equals("NOCUSTOMER"));
 		try{
-			assertTrue(_atm.getState().equals("NOCUSTOMER"));
-			_atm.runCommand("CARDREAD " +  Integer.toString(_cardreader.acctNumber(card1)));
+			_atm.runCommand(inputArray);
 		}catch(Exception e){
 			fail();
 		}

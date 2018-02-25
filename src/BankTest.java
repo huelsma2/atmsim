@@ -16,6 +16,10 @@ public class BankTest{
 	static HashMap<Integer, Account> accountList = new HashMap<Integer, Account>();
 	static Bank _bank;
 	static Account _account;
+	static ATM _atm;
+	static CardReader _cardreader;
+	static CashDispenser _cashdispenser;
+	static Printer _printer;
 	
 	Card card1 = new Card(1234);
 	Card card2 = new Card(6789);
@@ -33,15 +37,6 @@ public class BankTest{
 	 * 
 	 */
 	
-	static
-	{
-		accountList.put(1234, new Account(1234, 6789, 80.00));
-		accountList.put(6789, new Account(6789, 4321, 60.00));
-		_bank = new Bank(accountList);
-
-	};
-	
-	
 
 	/** 
 	 * Set initial balance for each of the desired accounts to default values.
@@ -50,6 +45,10 @@ public class BankTest{
 	accountList.put(1234, new Account(1234, 6789, 80.00));
 	accountList.put(6789, new Account(6789, 4321, 60.00));
 	_bank = new Bank(accountList);
+	_atm = new ATM(_bank);
+	_printer = new Printer();
+	_cashdispenser = new CashDispenser();
+	_cardreader = new CardReader();
 
 	
 	}
@@ -165,8 +164,5 @@ public class BankTest{
 		assertEquals(60.00, _bank.getBalance(card2), 0); 
 	
 	}
-	
-
-	
 	
 }
