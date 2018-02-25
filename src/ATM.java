@@ -1,7 +1,7 @@
 /**
  * ATM class simulates the ATM that a customer/actor will interact with.
  * ATM takes the input account number, validates, transacts, and prints receipt.
- * @author Andrew Yehle, Andrew Huelsman
+ * @author Andrew Huelsman
  */
 
 import java.sql.Timestamp;
