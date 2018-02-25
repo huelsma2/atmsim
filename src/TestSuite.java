@@ -4,7 +4,8 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ 
-	ATMTest.class
+	ATMTest.class,
+	BankTest.class
 	})
 
 public class TestSuite {
