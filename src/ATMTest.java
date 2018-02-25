@@ -206,6 +206,227 @@ public class ATMTest{
 	}
 	
 	/**
+	 * Tests to make sure the ATM does not accept input other than CARDREAD while in the NOCUSTOMER state
+	 */
+	@Test
+	public void TestBadInputForNOCUSTOMER()
+	{
+		setup();
+		
+	    String input;
+	    String[] inputArray;
+
+	      //Invalid input for the state
+	      input = "BUTTON W";
+	      inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+	      assertTrue(_atm.getState().equals("NOCUSTOMER"));
+	      input = "BUTTON D";
+	      inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+	      assertTrue(_atm.getState().equals("NOCUSTOMER"));
+	      input = "BUTTON CB";
+	      inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+	      assertTrue(_atm.getState().equals("NOCUSTOMER"));
+	      input = "NUM 6789";
+	      inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+	      assertTrue(_atm.getState().equals("NOCUSTOMER"));
+	      
+	      //Should not do anything
+	      input = "BUTTON CANCEL";
+	      inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+	      assertTrue(_atm.getState().equals("NOCUSTOMER"));
+	}	
+	
+	/**
+	 * Tests to make sure the ATM does not accept input other than NUM while in the TAKEPIN state
+	 */
+	@Test
+	public void TestBadInputForTAKEPIN()
+	{
+		setup();
+
+		
+	    String input = "CARDREAD 1234";
+	    String[] inputArray = input.split(" ");
+
+	      _atm.runCommand(inputArray);
+	      
+	      assertTrue(_atm.getState().equals("TAKEPIN"));
+
+	      //Invalid input for the state
+	      input = "BUTTON W";
+	      inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+	      assertTrue(_atm.getState().equals("TAKEPIN"));
+	      input = "BUTTON D";
+	      inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+	      assertTrue(_atm.getState().equals("TAKEPIN"));
+	      input = "BUTTON CB";
+	      inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+	      assertTrue(_atm.getState().equals("TAKEPIN"));
+	      input = "CARDREAD 1234";
+	      inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+	      assertTrue(_atm.getState().equals("TAKEPIN"));
+	      
+	      //Should take the ATM out of the current state and return it to the NOCUSTOMER state
+	      input = "BUTTON CANCEL";
+	      inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+	      assertTrue(_atm.getState().equals("NOCUSTOMER"));
+	}
+	
+	/**
+	 * Tests to make sure the ATM does not accept input other than BUTTON while in the TAKEBUTTON state
+	 */
+	@Test
+	public void TestBadInputForTAKEBUTTON()
+	{
+		setup();
+
+		
+	    String input = "CARDREAD 1234";
+	    String[] inputArray = input.split(" ");
+
+	      _atm.runCommand(inputArray);
+	      
+	      assertTrue(_atm.getState().equals("TAKEPIN"));
+	      
+	    input = "NUM 6789";
+	    inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+
+		assertTrue(_atm.getState().equals("TAKEBUTTON"));
+
+	      //Invalid input for the state
+	      input = "NUM 1234";
+	      inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+	      assertTrue(_atm.getState().equals("TAKEBUTTON"));
+	      input = "CARDREAD 1234";
+	      inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+	      assertTrue(_atm.getState().equals("TAKEBUTTON"));
+	      
+	      //Should take the ATM out of the current state and return it to the NOCUSTOMER state
+	      input = "BUTTON CANCEL";
+	      inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+	      assertTrue(_atm.getState().equals("NOCUSTOMER"));
+	}	
+	
+	/**
+	 * Tests to make sure the ATM does not accept input other than NUM while in the TAKEWITHDRAW state
+	 */
+	@Test
+	public void TestBadInputForTAKEWITHDRAW()
+	{
+		setup();
+
+		
+	    String input = "CARDREAD 1234";
+	    String[] inputArray = input.split(" ");
+
+	      _atm.runCommand(inputArray);
+	      
+	      assertTrue(_atm.getState().equals("TAKEPIN"));
+	      
+	    input = "NUM 6789";
+	    inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+
+		assertTrue(_atm.getState().equals("TAKEBUTTON"));
+		
+	      input = "BUTTON W";
+	      inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+	      assertTrue(_atm.getState().equals("TAKEWITHDRAW"));
+
+	      //Invalid input for the state
+	      input = "BUTTON W";
+	      inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+	      assertTrue(_atm.getState().equals("TAKEWITHDRAW"));
+	      input = "BUTTON D";
+	      inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+	      assertTrue(_atm.getState().equals("TAKEWITHDRAW"));
+	      input = "BUTTON CB";
+	      inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+	      assertTrue(_atm.getState().equals("TAKEWITHDRAW"));
+	      input = "CARDREAD 1234";
+	      inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+	      assertTrue(_atm.getState().equals("TAKEWITHDRAW"));
+	      
+	      //Should take the ATM out of the current state and return it to the NOCUSTOMER state
+	      input = "BUTTON CANCEL";
+	      inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+	      assertTrue(_atm.getState().equals("NOCUSTOMER"));
+	}
+	
+	/**
+	 * Tests to make sure the ATM does not accept input other than NUM while in the TAKEDEPOSIT state
+	 */
+	@Test
+	public void TestBadInputForTAKEDEPOSIT()
+	{
+		setup();
+
+		
+	    String input = "CARDREAD 1234";
+	    String[] inputArray = input.split(" ");
+
+	      _atm.runCommand(inputArray);
+	      
+	      assertTrue(_atm.getState().equals("TAKEPIN"));
+	      
+	    input = "NUM 6789";
+	    inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+
+		assertTrue(_atm.getState().equals("TAKEBUTTON"));
+		
+	      input = "BUTTON D";
+	      inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+	      assertTrue(_atm.getState().equals("TAKEDEPOSIT"));
+
+	      //Invalid input for the state
+	      input = "BUTTON W";
+	      inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+	      assertTrue(_atm.getState().equals("TAKEDEPOSIT"));
+	      input = "BUTTON D";
+	      inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+	      assertTrue(_atm.getState().equals("TAKEDEPOSIT"));
+	      input = "BUTTON CB";
+	      inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+	      assertTrue(_atm.getState().equals("TAKEDEPOSIT"));
+	      input = "CARDREAD 1234";
+	      inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+	      assertTrue(_atm.getState().equals("TAKEDEPOSIT"));
+	      
+	      //Should take the ATM out of the current state and return it to the NOCUSTOMER state
+	      input = "BUTTON CANCEL";
+	      inputArray = input.split(" ");
+	      _atm.runCommand(inputArray);
+	      assertTrue(_atm.getState().equals("NOCUSTOMER"));
+	      
+	}
+	
+	/**
 	 * Tests to ensure TAKEBUTTONSTATE
 	 */
 	@Test
