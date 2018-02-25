@@ -38,7 +38,7 @@ public class Bank {
 			if(!_accountList.containsKey(in.accountNumber()))
 	
 				return false;
-		}catch (NullPointerException e) { System.out.println("Fuck"); return false; }
+		}catch (NullPointerException e) { System.out.println(""); return false; }
 		return true;
 	}
 	
