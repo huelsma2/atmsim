@@ -1,10 +1,9 @@
-import static org.junit.Assert.*;
 /** BankTest Test Cases 
-big big
  * 
  * @author Michael D
  *
  */
+import static org.junit.Assert.*;
 
 import java.util.HashMap;
 

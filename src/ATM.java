@@ -211,4 +211,27 @@ public class ATM {
 		{
 			return this.state.toString();
 		}
+		
+		public void setState(String s){
+			
+			if (s.equals("NOCUSTOMER")){
+				state = STATES.NOCUSTOMER;
+			}
+			
+			if (s.equals("TAKEPIN")){
+				state = STATES.TAKEPIN;
+			}
+			
+			if (s.equals("TAKEBUTTON")){
+				state = STATES.TAKEBUTTON;
+			}
+			
+			if (s.equals("TAKEWITHDRAW")){
+				state = STATES.TAKEWITHDRAW;
+			}
+			
+			if (s.equals("TAKEDEPOSIT")){
+				state = STATES.TAKEDEPOSIT;
+			}
+		}
 }
