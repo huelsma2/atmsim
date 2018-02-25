@@ -201,4 +201,14 @@ public class ATM {
 		{
 			System.out.print(t + " ");
 		}
+		
+		/**
+		 * This method returns the current state of the ATM
+		 * for testing purposes.
+		 * @return
+		 */
+		public String getState()
+		{
+			return this.state.toString();
+		}
 }

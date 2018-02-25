@@ -1,3 +1,8 @@
+/**
+ * This test class tests the functionality of the bank and making transactions.
+ * It also tests the ATM class's ability to input commands and change states.
+ * @author Michael Davis, Andrew Yehle
+ */
 import static org.junit.Assert.*;
 /** BankTest Test Cases 
  * 
@@ -66,8 +71,10 @@ public class ATMTest{
 	 * Tests if card2's account # is valid to an account
 	 */
 	@Test
-	public void TestValidAccountNumber() {
+	public void TestValidAccountNumber() {//Couldn't we use the banks validate ? I believe we can since this is still testing functionality of bank, hardware is seperate
 		setup();
+		//assertTrue(_bank.validate(card1));
+		//assertTrue(_bank.validate(card2));
 		//_cardreader.acctNumber(card1);
 		_atm.runCommand("CARDREAD " +  Integer.toString(_cardreader.acctNumber(card1)));
 	
@@ -177,6 +184,23 @@ public class ATMTest{
 		assertFalse(_bank.withdraw(card2, -200.00)); 
 		assertEquals(60.00, _bank.getBalance(card2), 0); 
 	
+	}
+	
+	
+	/**
+	 * Tests commands
+	 */
+	@Test
+	public void CommandsTest(){
+		setup();
+		
+		try{
+			assertTrue(_atm.getState().equals("NOCUSTOMER"));
+			_atm.runCommand("CARDREAD " +  Integer.toString(_cardreader.acctNumber(card1)));
+		}catch(Exception e){
+			fail();
+		}
+		
 	}
 	
 }
